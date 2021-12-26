@@ -1,0 +1,7 @@
+         lda     0                                               
+         add     b                                               
+         mul     2                                               
+         sta     7                                               
+         add     20                                              
+         mul     3                                               
+         sta     8                                               
