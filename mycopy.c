@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
         {
 
             int fd_src = open(from, O_RDONLY);     // 소스 파일 오픈
-            int fd_dest = open(to, O_CREAT, 0666); // 대상 파일 오픈
+            int fd_dest = open(to, O_CREAT|O_WRONLY, 0666); // 대상 파일 오픈
             char buf[256];                         // 버퍼의 값을 0으로 초기화
             size_t read_len = 0;
 
