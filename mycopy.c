@@ -5,8 +5,10 @@
 #include <stdio.h>
 
 /*
-stat : 파일 있는지 여부 조사 : https://stackoverflow.com/questions/3828192/checking-if-a-directory-exists-in-unix-system-call
-write : 파일 쓰기 : https://man7.org/linux/man-pages/man2/write.2.html
+stat : 파일 있는지 여부 조사 
+: https://stackoverflow.com/questions/3828192/checking-if-a-directory-exists-in-unix-system-call
+write : 파일 쓰기 
+: https://man7.org/linux/man-pages/man2/write.2.html
 open : 파일 열기
 close : 파일 닫기
 argv[0] : 파일 실행 경로
@@ -74,7 +76,7 @@ int main(int argc, char *argv[])
         char err_message[] = "Cannot open the source file!\n";
         write(STDOUT_FILENO, err_message, 30); // 에러 메시지 출력
         _exit(1);                              // 나가기
-    }                                          // 여기 안걸리면 파일이 존재함.
+    }                                        
 
     return 0;
 }
