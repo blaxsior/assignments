@@ -11,6 +11,14 @@ void create_melong()
     close(fp);
 }
 
+void pr(int arr[])
+{
+    printf("%d", arr[0]);
+}
+
 int main(){
-    create_melong();
+    // create_melong();
+    int arr[] = {1,2,3,4,5};
+    pr(arr);
+    pr((arr + 1));
 }
