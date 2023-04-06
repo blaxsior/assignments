@@ -1,0 +1,70 @@
+blaxsior@DESKTOP-N59DUHU:~/codes/boan/smile/fordump$ objdump -drwC -Mintel -S fordump2.o
+
+fordump2.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+#include <stdio.h>
+
+int main() {
+   0:   f3 0f 1e fa             endbr64 
+   4:   55                      push   rbp
+   5:   48 89 e5                mov    rbp,rsp
+    int a = 10;
+   8:   c7 45 d8 0a 00 00 00    mov    DWORD PTR [rbp-0x28],0xa
+    int b = 20;
+   f:   c7 45 dc 14 00 00 00    mov    DWORD PTR [rbp-0x24],0x14
+
+    // 여러 연산 정의!
+    int c = a + b;
+  16:   8b 55 d8                mov    edx,DWORD PTR [rbp-0x28]
+  19:   8b 45 dc                mov    eax,DWORD PTR [rbp-0x24]
+  1c:   01 d0                   add    eax,edx
+  1e:   89 45 e0                mov    DWORD PTR [rbp-0x20],eax
+    int d = a - b;
+  21:   8b 45 d8                mov    eax,DWORD PTR [rbp-0x28]
+  24:   2b 45 dc                sub    eax,DWORD PTR [rbp-0x24]
+  27:   89 45 e4                mov    DWORD PTR [rbp-0x1c],eax
+    int e = a * b;
+  2a:   8b 45 d8                mov    eax,DWORD PTR [rbp-0x28]
+  2d:   0f af 45 dc             imul   eax,DWORD PTR [rbp-0x24]
+  31:   89 45 e8                mov    DWORD PTR [rbp-0x18],eax
+    int f = a % b;
+  34:   8b 45 d8                mov    eax,DWORD PTR [rbp-0x28]
+  37:   99                      cdq    
+  38:   f7 7d dc                idiv   DWORD PTR [rbp-0x24]
+  3b:   89 55 ec                mov    DWORD PTR [rbp-0x14],edx
+    int g = a | b;
+  3e:   8b 45 d8                mov    eax,DWORD PTR [rbp-0x28]
+  41:   0b 45 dc                or     eax,DWORD PTR [rbp-0x24]
+  44:   89 45 f0                mov    DWORD PTR [rbp-0x10],eax
+    int h = a & b;
+  47:   8b 45 d8                mov    eax,DWORD PTR [rbp-0x28]
+  4a:   23 45 dc                and    eax,DWORD PTR [rbp-0x24]
+  4d:   89 45 f4                mov    DWORD PTR [rbp-0xc],eax
+    int i = a || b;
+  50:   83 7d d8 00             cmp    DWORD PTR [rbp-0x28],0x0
+  54:   75 06                   jne    5c <main+0x5c>
+  56:   83 7d dc 00             cmp    DWORD PTR [rbp-0x24],0x0
+  5a:   74 07                   je     63 <main+0x63>
+  5c:   b8 01 00 00 00          mov    eax,0x1
+  61:   eb 05                   jmp    68 <main+0x68>
+  63:   b8 00 00 00 00          mov    eax,0x0
+  68:   89 45 f8                mov    DWORD PTR [rbp-0x8],eax
+    int j = a && b;
+  6b:   83 7d d8 00             cmp    DWORD PTR [rbp-0x28],0x0
+  6f:   74 0d                   je     7e <main+0x7e>
+  71:   83 7d dc 00             cmp    DWORD PTR [rbp-0x24],0x0
+  75:   74 07                   je     7e <main+0x7e>
+  77:   b8 01 00 00 00          mov    eax,0x1
+  7c:   eb 05                   jmp    83 <main+0x83>
+  7e:   b8 00 00 00 00          mov    eax,0x0
+  83:   89 45 fc                mov    DWORD PTR [rbp-0x4],eax
+
+    return 0;
+  86:   b8 00 00 00 00          mov    eax,0x0
+  8b:   5d                      pop    rbp
+  8c:   c3                      ret    
+blaxsior@DESKTOP-N59DUHU:~/codes/boan/smile/fordump$ 

@@ -1,0 +1,55 @@
+blaxsior@DESKTOP-N59DUHU:~/codes/boan/smile$ gcc -g -c fordump.c -o fordump.o
+blaxsior@DESKTOP-N59DUHU:~/codes/boan/smile$ objdump -d -M intel -S fordump.o
+
+fordump.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+#include <stdio.h>
+
+int main() {
+   0:   f3 0f 1e fa             endbr64 
+   4:   55                      push   rbp
+   5:   48 89 e5                mov    rbp,rsp
+   8:   48 83 ec 10             sub    rsp,0x10
+    int a = 10 + 20;
+   c:   c7 45 f8 1e 00 00 00    mov    DWORD PTR [rbp-0x8],0x1e
+    int b = 20 - 35;
+  13:   c7 45 fc f1 ff ff ff    mov    DWORD PTR [rbp-0x4],0xfffffff1
+
+    if(a == 10) {
+  1a:   83 7d f8 0a             cmp    DWORD PTR [rbp-0x8],0xa
+  1e:   75 13                   jne    33 <main+0x33>
+        printf("cannot reach!");
+  20:   48 8d 3d 00 00 00 00    lea    rdi,[rip+0x0]        # 27 <main+0x27>
+  27:   b8 00 00 00 00          mov    eax,0x0
+  2c:   e8 00 00 00 00          call   31 <main+0x31>
+  31:   eb 11                   jmp    44 <main+0x44>
+    } else {
+        printf("can reach!");
+  33:   48 8d 3d 00 00 00 00    lea    rdi,[rip+0x0]        # 3a <main+0x3a>
+  3a:   b8 00 00 00 00          mov    eax,0x0
+  3f:   e8 00 00 00 00          call   44 <main+0x44>
+    }
+
+    if(a != 10) {
+  44:   83 7d f8 0a             cmp    DWORD PTR [rbp-0x8],0xa
+  48:   74 13                   je     5d <main+0x5d>
+        printf("can reach b !");
+  4a:   48 8d 3d 00 00 00 00    lea    rdi,[rip+0x0]        # 51 <main+0x51>
+  51:   b8 00 00 00 00          mov    eax,0x0
+  56:   e8 00 00 00 00          call   5b <main+0x5b>
+  5b:   eb 11                   jmp    6e <main+0x6e>
+    } else {
+        printf("cannot reach!");
+  5d:   48 8d 3d 00 00 00 00    lea    rdi,[rip+0x0]        # 64 <main+0x64>
+  64:   b8 00 00 00 00          mov    eax,0x0
+  69:   e8 00 00 00 00          call   6e <main+0x6e>
+    }
+
+    return 0;
+  6e:   b8 00 00 00 00          mov    eax,0x0
+  73:   c9                      leave  
+  74:   c3                      ret    

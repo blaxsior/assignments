@@ -1,0 +1,58 @@
+같습니다^3^ : eab099 ec8ab5 eb8b88 eb8ba4 5e335e
+다릅니다OoO : eb8ba4 eba685 eb8b88 eb8ba4 4f6f4f
+
+eab092ec9d84
+
+// smile1.o : 같습니다 / 다릅니다 변경
+
+https://stackoverflow.com/questions/1289881/using-gcc-to-produce-readable-assembly
+
+blaxsior@DESKTOP-N59DUHU:~/codes/boan$ gcc -g -c smile.c -o testt
+blaxsior@DESKTOP-N59DUHU:~/codes/boan$ objdump -d -M intel -S testt
+
+blaxsior@DESKTOP-N59DUHU:~/codes/boan$ objdump -d -M intel -S testt
+
+testt:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+#include <stdio.h>
+
+int main() {
+   0:   f3 0f 1e fa             endbr64 
+   4:   55                      push   rbp
+   5:   48 89 e5                mov    rbp,rsp
+   8:   48 83 ec 10             sub    rsp,0x10
+    int a = 85;
+   c:   c7 45 f4 55 00 00 00    mov    DWORD PTR [rbp-0xc],0x55
+    int b = 15;
+  13:   c7 45 f8 0f 00 00 00    mov    DWORD PTR [rbp-0x8],0xf
+    int sum =  a+b;
+  1a:   8b 55 f4                mov    edx,DWORD PTR [rbp-0xc]
+  1d:   8b 45 f8                mov    eax,DWORD PTR [rbp-0x8]
+  20:   01 d0                   add    eax,edx
+  22:   89 45 fc                mov    DWORD PTR [rbp-0x4],eax
+
+    if(sum!=(a+b)) {
+  25:   8b 55 f4                mov    edx,DWORD PTR [rbp-0xc]
+  28:   8b 45 f8                mov    eax,DWORD PTR [rbp-0x8]
+  2b:   01 d0                   add    eax,edx
+  2d:   39 45 fc                cmp    DWORD PTR [rbp-0x4],eax
+  30:   74 13                   je     45 <main+0x45>
+        printf("a+b와 sum의 값이 같습니다 ^3^");
+  32:   48 8d 3d 00 00 00 00    lea    rdi,[rip+0x0]        # 39 <main+0x39>
+  39:   b8 00 00 00 00          mov    eax,0x0
+  3e:   e8 00 00 00 00          call   43 <main+0x43>
+  43:   eb 11                   jmp    56 <main+0x56>
+    } else {
+        printf("a+b와 sum의 값이 다릅니다 OoO");
+  45:   48 8d 3d 00 00 00 00    lea    rdi,[rip+0x0]        # 4c <main+0x4c>
+  4c:   b8 00 00 00 00          mov    eax,0x0
+  51:   e8 00 00 00 00          call   56 <main+0x56>
+    }
+    return 0;
+  56:   b8 00 00 00 00          mov    eax,0x0
+  5b:   c9                      leave  
+  5c:   c3                      ret    
